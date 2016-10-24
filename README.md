@@ -15,7 +15,11 @@ $ npm i minibase --save
 > For more use-cases see the [tests](./test.js)
 
 ```js
-const MiniBase = require('minibase')
+const MiniBase = require('minibase').MiniBase
+
+// or instance directly
+
+const minibase = require('minibase')
 ```
 
 ## API
