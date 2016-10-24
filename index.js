@@ -15,7 +15,32 @@ const utils = require('./utils')
  * object - if given, otherwise the `minibase.options`
  * defaults to empty object. _**Never throws - emit events!™**_
  *
- * @param {Object} `[options]`
+ * **Example**
+ *
+ * ```js
+ * const MiniBase = require('minibase').MiniBase
+ * const app = require('minibase')
+ *
+ * // when `silent: true` it will not add
+ * // the default event listener to `error` event
+ * const minibase = MiniBase({ silent: true })
+ *
+ * // nothing is printed, until you add
+ * // listener `.on('error', fn)`
+ * minibase.use(() => {
+ *   throw new Error('foo bar')
+ * })
+ *
+ * // if you work with defaults
+ * // you will get this error printed
+ * // because the default error handler
+ * app.use(function () {
+ *   console.log(this.options.silent) // => undefined
+ *   throw new Error('default error handler works')
+ * })
+ * ```
+ *
+ * @param {Object} `[options]` optional, pass `silent: true` to not add default error listener
  * @api public
  */
 
@@ -77,6 +102,31 @@ utils.delegate(MiniBase.prototype, {
    * > Copy properties from `provider` to `this` instance
    * of `MiniBase`, using [delegate-properties][] lib.
    *
+   * **Example**
+   *
+   * ```js
+   * const minibase = require('minibase')
+   *
+   * minibase.use((app) => {
+   *   // `app` is `minibase`
+   *
+   *   app.delegate({
+   *     foo: 'bar',
+   *     qux: (name) => {
+   *       console.log(`hello ${name}`)
+   *     }
+   *   })
+   * })
+   *
+   * // or directly use `.delegate`,
+   * // not through plugin
+   * minibase.delegate({ cats: 'dogs' })
+   *
+   * console.log(minibase.cats) // => 'dogs'
+   * console.log(minibase.foo) // => 'bar'
+   * console.log(minibase.qux('kitty!')) // => 'hello kitty!'
+   * ```
+   *
    * @name   .delegate
    * @param  {Object} `<provider>` object providing properties
    * @return {Object} Returns instance of `MiniBase` for chaining
@@ -91,6 +141,44 @@ utils.delegate(MiniBase.prototype, {
   /**
    * > Used for adding non-enumerable property `key` with `value`
    * on the instance, using [define-property][] lib.
+   *
+   * **Example**
+   *
+   * ```js
+   * const minibase = require('minibase')
+   *
+   * minibase.use(function (app) {
+   *   // `app` and `this` are instance of `MiniBase`,
+   *   // and so `minibase`
+   *
+   *   this.define('set', function set (key, value) {
+   *     this.cache = this.cache || {}
+   *     this.cache[key] = value
+   *     return this
+   *   })
+   *   app.define('get', function get (key) {
+   *     return this.cache[key]
+   *   })
+   * })
+   *
+   * minibase
+   *   .set('foo', 'bar')
+   *   .set('qux', 123)
+   *   .set('baz', { a: 'b' })
+   *
+   * // or directly use `.define`,
+   * // not through plugin
+   * minibase.define('hi', 'kitty')
+   * console.log(minibase.hi) // => 'kitty'
+   *
+   * console.log(minibase.get('foo')) // => 'bar'
+   * console.log(minibase.get('qux')) // => 123
+   * console.log(minibase.get('baz')) // => { a: 'b' }
+   *
+   * // or access the cache directly
+   * console.log(minimist.cache.baz) // => { a: 'b' }
+   * console.log(minimist.cache.qux) // => 123
+   * ```
    *
    * @name   .define
    * @param  {String} `key` name of the property to be defined or modified
@@ -111,7 +199,30 @@ utils.delegate(MiniBase.prototype, {
    * Uses [try-catch-callback][] under the hood to handle errors
    * and completion of that synchronous function.
    * _**Never throws - emit events!™**_
-   * > See [try-catch-callback][] and/or [try-catch-core][] for more details.
+   *
+   * See [try-catch-callback][] and/or [try-catch-core][] for more details.
+   *
+   * **Example**
+   *
+   * ```js
+   * const MiniBase = require('minibase').MiniBase
+   * const app = MiniBase({ silent: true, foo: 'bar' })
+   *
+   * app
+   *   .once('error', (err) => console.error(err.stack || err))
+   *   .on('use', function (fn, res) {
+   *     // called on each `.use` call
+   *     console.log(res) // => 555
+   *   })
+   *   .use((app) => {
+   *     console.log(app.options) // => { silent: true, foo: 'bar' }
+   *     return 555
+   *   })
+   *   .use(function () {
+   *     // intentionally
+   *     foo bar
+   *   })
+   * ```
    *
    * @name   .use
    * @emits `error` when plugin `fn` throws an error
@@ -143,7 +254,23 @@ utils.delegate(MiniBase, {
   /**
    * > Static method to delegate properties from `provider` to `receiver`
    * and make them non-enumerable.
-   * > See [delegate-properties][] for more details, it is exact mirror.
+   *
+   * See [delegate-properties][] for more details, it is exact mirror.
+   *
+   * **Example**
+   *
+   * ```js
+   * const MiniBase = require('minibase').MiniBase
+   *
+   * const obj = { foo: 'bar' }
+   *
+   * MiniBase.delegate(obj, {
+   *   qux: 123
+   * })
+   *
+   * console.log(obj.foo) // => 'bar'
+   * console.log(obj.qux) // => 123
+   * ```
    *
    * @name   #delegate
    * @param  {Object} `receiver` object receiving properties
@@ -155,7 +282,21 @@ utils.delegate(MiniBase, {
 
   /**
    * > Static method to define a non-enumerable property on an object.
-   * > See [define-property][] for more details, it is exact mirror.
+   *
+   * See [define-property][] for more details, it is exact mirror.
+   *
+   * **Example**
+   *
+   * ```js
+   * const MiniBase = require('minibase').MiniBase
+   *
+   * const obj = {}
+   * MiniBase.define(obj, 'foo', 123)
+   * MiniBase.define(obj, 'bar', () => console.log('qux'))
+   *
+   * console.log(obj.foo) // => 123
+   * console.log(obj.bar()) // => 'qux'
+   * ```
    *
    * @name   #define
    * @param  {Object} `obj` The object on which to define the property
@@ -170,7 +311,30 @@ utils.delegate(MiniBase, {
    * > Static method for inheriting the prototype and static
    * methods of the `MiniBase` class. This method greatly simplifies
    * the process of creating inheritance-based applications.
-   * > See [static-extend][] for more details.
+   *
+   * See [static-extend][] for more details.
+   *
+   * **Example**
+   *
+   * ```js
+   * const MiniBase = require('minibase').MiniBase
+   *
+   * function MyApp (options) {
+   *   MiniBase.call(this, options)
+   * }
+   *
+   * MiniBase.extend(MyApp)
+   *
+   * console.log(MyApp.extend) // => function
+   * console.log(MyApp.define) // => function
+   * console.log(MyApp.delegate) // => function
+   *
+   * const app = new MyApp()
+   *
+   * console.log(app.use) // => function
+   * console.log(app.define) // => function
+   * console.log(app.delegate) // => function
+   * ```
    *
    * @name   #extend
    * @param  {Function} `Ctor` constructor to extend

@@ -44,30 +44,73 @@ const minibase = require('minibase')
 
 ## API
 
-### [MiniBase](index.js#L22)
-
-> Creates an instance of `MiniBase` with optional `options`
-object - if given, otherwise the `minibase.options`
-defaults to empty object. _**Never throws - emit events!™**_
+### [MiniBase](index.js#L47)
+> Creates an instance of `MiniBase` with optional `options` object - if given, otherwise the `minibase.options` defaults to empty object. _**Never throws - emit events!™**_
 
 **Params**
 
-* `[options]` **{Object}**    
+* `[options]` **{Object}**: optional, pass `silent: true` to not add default error listener    
 
-### [.delegate](index.js#L86)
+**Example**
 
-> Copy properties from `provider` to `this` instance
-of `MiniBase`, using [delegate-properties][] lib.
+```js
+const MiniBase = require('minibase').MiniBase
+const app = require('minibase')
+
+// when `silent: true` it will not add
+// the default event listener to `error` event
+const minibase = MiniBase({ silent: true })
+
+// nothing is printed, until you add
+// listener `.on('error', fn)`
+minibase.use(() => {
+  throw new Error('foo bar')
+})
+
+// if you work with defaults
+// you will get this error printed
+// because the default error handler
+app.use(function () {
+  console.log(this.options.silent) // => undefined
+  throw new Error('default error handler works')
+})
+```
+
+### [.delegate](index.js#L136)
+> Copy properties from `provider` to `this` instance of `MiniBase`, using [delegate-properties][] lib.
 
 **Params**
 
 * `<provider>` **{Object}**: object providing properties    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.define](index.js#L102)
+**Example**
 
-> Used for adding non-enumerable property `key` with `value`
-on the instance, using [define-property][] lib.
+```js
+const minibase = require('minibase')
+
+minibase.use((app) => {
+  // `app` is `minibase`
+
+  app.delegate({
+    foo: 'bar',
+    qux: (name) => {
+      console.log(`hello ${name}`)
+    }
+  })
+})
+
+// or directly use `.delegate`,
+// not through plugin
+minibase.delegate({ cats: 'dogs' })
+
+console.log(minibase.cats) // => 'dogs'
+console.log(minibase.foo) // => 'bar'
+console.log(minibase.qux('kitty!')) // => 'hello kitty!'
+```
+
+### [.define](index.js#L190)
+> Used for adding non-enumerable property `key` with `value` on the instance, using [define-property][] lib.
 
 **Params**
 
@@ -75,15 +118,48 @@ on the instance, using [define-property][] lib.
 * `value` **{any}**: descriptor for the property being defined or modified    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.use](index.js#L127)
+**Example**
 
-> Define a plugin `fn` function to be called immediately upon init.
-It is recommended `fn` to be synchronous and should not expect
-asynchronous plugins to work correctly - use plugins for this.
-Uses [try-catch-callback][] under the hood to handle errors
-and completion of that synchronous function.
-_**Never throws - emit events!™**_
-> See [try-catch-callback][] and/or [try-catch-core][] for more details.
+```js
+const minibase = require('minibase')
+
+minibase.use(function (app) {
+  // `app` and `this` are instance of `MiniBase`,
+  // and so `minibase`
+
+  this.define('set', function set (key, value) {
+    this.cache = this.cache || {}
+    this.cache[key] = value
+    return this
+  })
+  app.define('get', function get (key) {
+    return this.cache[key]
+  })
+})
+
+minibase
+  .set('foo', 'bar')
+  .set('qux', 123)
+  .set('baz', { a: 'b' })
+
+// or directly use `.define`,
+// not through plugin
+minibase.define('hi', 'kitty')
+console.log(minibase.hi) // => 'kitty'
+
+console.log(minibase.get('foo')) // => 'bar'
+console.log(minibase.get('qux')) // => 123
+console.log(minibase.get('baz')) // => { a: 'b' }
+
+// or access the cache directly
+console.log(minimist.cache.baz) // => { a: 'b' }
+console.log(minimist.cache.qux) // => 123
+```
+
+### [.use](index.js#L238)
+> Define a plugin `fn` function to be called immediately upon init. It is recommended `fn` to be synchronous and should not expect asynchronous plugins to work correctly - use plugins for this. Uses [try-catch-callback][] under the hood to handle errors and completion of that synchronous function. _**Never throws - emit events!™**_
+
+See [try-catch-callback][] and/or [try-catch-core][] for more details.
 
 **Params**
 
@@ -94,21 +170,57 @@ _**Never throws - emit events!™**_
 * `emits`: `error` when plugin `fn` throws an error  
 * `emits`: `use` on successful completion with `fn` and `result` arguments, where the `result` is returned value of the plugin  
 
-### [#delegate](index.js#L154)
+**Example**
 
-> Static method to delegate properties from `provider` to `receiver`
-and make them non-enumerable.
-> See [delegate-properties][] for more details, it is exact mirror.
+```js
+const MiniBase = require('minibase').MiniBase
+const app = MiniBase({ silent: true, foo: 'bar' })
+
+app
+  .once('error', (err) => console.error(err.stack || err))
+  .on('use', function (fn, res) {
+    // called on each `.use` call
+    console.log(res) // => 555
+  })
+  .use((app) => {
+    console.log(app.options) // => { silent: true, foo: 'bar' }
+    return 555
+  })
+  .use(function () {
+    // intentionally
+    foo bar
+  })
+```
+
+### [#delegate](index.js#L281)
+> Static method to delegate properties from `provider` to `receiver` and make them non-enumerable.
+
+See [delegate-properties][] for more details, it is exact mirror.
 
 **Params**
 
 * `receiver` **{Object}**: object receiving properties    
 * `provider` **{Object}**: object providing properties    
 
-### [#define](index.js#L167)
+**Example**
 
+```js
+const MiniBase = require('minibase').MiniBase
+
+const obj = { foo: 'bar' }
+
+MiniBase.delegate(obj, {
+  qux: 123
+})
+
+console.log(obj.foo) // => 'bar'
+console.log(obj.qux) // => 123
+```
+
+### [#define](index.js#L308)
 > Static method to define a non-enumerable property on an object.
-> See [define-property][] for more details, it is exact mirror.
+
+See [define-property][] for more details, it is exact mirror.
 
 **Params**
 
@@ -116,17 +228,50 @@ and make them non-enumerable.
 * `prop` **{Object}**: The name of the property to be defined or modified    
 * `descriptor` **{any}**: The descriptor for the property being defined or modified    
 
-### [#extend](index.js#L181)
+**Example**
 
-> Static method for inheriting the prototype and static
-methods of the `MiniBase` class. This method greatly simplifies
-the process of creating inheritance-based applications.
-> See [static-extend][] for more details.
+```js
+const MiniBase = require('minibase').MiniBase
+
+const obj = {}
+MiniBase.define(obj, 'foo', 123)
+MiniBase.define(obj, 'bar', () => console.log('qux'))
+
+console.log(obj.foo) // => 123
+console.log(obj.bar()) // => 'qux'
+```
+
+### [#extend](index.js#L345)
+> Static method for inheriting the prototype and static methods of the `MiniBase` class. This method greatly simplifies the process of creating inheritance-based applications.
+
+See [static-extend][] for more details.
 
 **Params**
 
 * `Ctor` **{Function}**: constructor to extend    
 * `methods` **{Object}**: optional prototype properties to mix in    
+
+**Example**
+
+```js
+const MiniBase = require('minibase').MiniBase
+
+function MyApp (options) {
+  MiniBase.call(this, options)
+}
+
+MiniBase.extend(MyApp)
+
+console.log(MyApp.extend) // => function
+console.log(MyApp.define) // => function
+console.log(MyApp.delegate) // => function
+
+const app = new MyApp()
+
+console.log(app.use) // => function
+console.log(app.define) // => function
+console.log(app.delegate) // => function
+```
 
 ## Related
 - [base-app](https://www.npmjs.com/package/base-app): Starting point for creating a base application, with a few light plugins… [more](https://github.com/node-base/base-app) | [homepage](https://github.com/node-base/base-app "Starting point for creating a base application, with a few light plugins for running tasks and writing to the file system, and a functional CLI.")
