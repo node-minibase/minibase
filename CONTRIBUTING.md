@@ -18,7 +18,7 @@ But you aren't limited to these things. Use your imagination. If you like a proj
 
 As a user of `minibase` you're the perfect candidate to help us improve our documentation. Typo corrections, error fixes, better explanations, more examples, etc. Open issues for things that could be improved. Anything. Even improvements to this document.
 
-Use the [`docs` label](https://github.com/tunnckoCore/minibase/labels/docs) to find suggestions for what we'd love to see more documentation on.
+Use the [`docs` label](https://github.com/node-minibase/minibase/labels/docs) to find suggestions for what we'd love to see more documentation on.
 
 ### Improve issues
 
@@ -26,9 +26,9 @@ Some issues are created with missing information, not reproducible, or plain inv
 
 ### Give feedback on issues
 
-We're always looking for more opinions on discussions in the issue tracker. It's a good opportunity to influence the future direction of AVA.
+We're always looking for more opinions on discussions in the issue tracker. It's a good opportunity to influence the future direction of `minibase`.
 
-The [`question` label](https://github.com/tunnckoCore/minibase/labels/question) is a good place to find ongoing discussions.
+The [`question` label](https://github.com/node-minibase/minibase/labels/question%20%2F%20discussion) is a good place to find ongoing discussions.
 
 
 ## Why should I contribute?
