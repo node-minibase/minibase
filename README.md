@@ -1,5 +1,11 @@
 # [minibase][author-www-url] [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] [![npm downloads][downloads-img]][downloads-url] 
 
+<p align="center">
+  <a href="https://github.com/node-base/base">
+    <img height="250" width="250" src="https://avatars1.githubusercontent.com/u/23032863?v=3&s=250">
+  </a>
+</p>
+
 > MiniBase is minimalist approach to Base - [@node-base](https://github.com/node-base), the awesome framework. Foundation for building complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
