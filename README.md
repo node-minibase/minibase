@@ -10,6 +10,19 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
+## Table of Contents
+- [Install](#install)
+- [Usage](#usage)
+- [API](#api)
+  * [MiniBase](#minibase)
+  * [.delegate](#delegate)
+  * [.define](#define)
+  * [.use](#use)
+  * [#delegate](##delegate)
+  * [#define](##define)
+  * [#extend](##extend)
+- [Contributing](#contributing)
+
 ## Install
 > Install with [npm](https://www.npmjs.com/)
 
