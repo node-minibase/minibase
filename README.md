@@ -51,10 +51,10 @@ on the instance, using [define-property][] lib.
 * `value` **{any}**: descriptor for the property being defined or modified    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.use](index.js#L125)
+### [.use](index.js#L126)
 
 > Define a plugin `fn` function to be called immediately upon init.
-It is recommended to be synchronous and should not expect
+It is recommended `fn` to be synchronous and should not expect
 asynchronous plugins to work correctly - use plugins for this.
 Uses [try-catch-callback][] under the hood to handle errors
 and completion of that synchronous function.
@@ -62,7 +62,7 @@ _**Never throws - emit events!™**_
 
 **Params**
 
-* `fn` **{Function}**: plugin to be called with `ctx` argument, where both `ctx` and `this` of `fn` are instance of `MiniBase`    
+* `fn` **{Function}**: plugin to be called with `ctx, cb` arguments, where both `ctx` and `this` of `fn` are instance of `MiniBase` and `cb` is callback - use with caution and in rare cases    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
 **Events**

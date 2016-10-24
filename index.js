@@ -106,7 +106,7 @@ utils.delegate(MiniBase.prototype, {
 
   /**
    * > Define a plugin `fn` function to be called immediately upon init.
-   * It is recommended to be synchronous and should not expect
+   * It is recommended `fn` to be synchronous and should not expect
    * asynchronous plugins to work correctly - use plugins for this.
    * Uses [try-catch-callback][] under the hood to handle errors
    * and completion of that synchronous function.
@@ -116,8 +116,9 @@ utils.delegate(MiniBase.prototype, {
    * @emits `error` when plugin `fn` throws an error
    * @emits `use` on successful completion with `fn` and `result` arguments,
    *              where the `result` is returned value of the plugin
-   * @param  {Function} `fn` plugin to be called with `ctx` argument,
+   * @param  {Function} `fn` plugin to be called with `ctx, cb` arguments,
    *              where both `ctx` and `this` of `fn` are instance of `MiniBase`
+   *              and `cb` is callback - use with caution and in rare cases
    * @return {Object} Returns instance of `MiniBase` for chaining
    * @api public
    */
@@ -132,7 +133,7 @@ utils.delegate(MiniBase.prototype, {
         return
       }
       this.emit('use', fn, res)
-    })
+    }, true)
     return this
   }
 })
