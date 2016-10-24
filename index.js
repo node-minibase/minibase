@@ -49,6 +49,7 @@ utils.delegate(MiniBase.prototype, {
   /**
    * > Does defaulting stuff on init.
    *
+   * @name   .initMiniBase
    * @param  {Object} `options`
    * @return {Object} Returns instance of `MiniBase` for chaining
    * @api private
@@ -76,7 +77,8 @@ utils.delegate(MiniBase.prototype, {
    * > Copy properties from `provider` to `this` instance
    * of `MiniBase`, using [delegate-properties][] lib.
    *
-   * @param  {Object} `<provider>`
+   * @name   .delegate
+   * @param  {Object} `<provider>` object providing properties
    * @return {Object} Returns instance of `MiniBase` for chaining
    * @api public
    */
@@ -90,6 +92,7 @@ utils.delegate(MiniBase.prototype, {
    * > Used for adding non-enumerable property `key` with `value`
    * on the instance, using [define-property][] lib.
    *
+   * @name   .define
    * @param  {String} `key` name of the property to be defined or modified
    * @param  {any} `value` descriptor for the property being defined or modified
    * @return {Object} Returns instance of `MiniBase` for chaining
@@ -109,6 +112,7 @@ utils.delegate(MiniBase.prototype, {
    * and completion of that synchronous function.
    * _**Never throws - emit events!™**_
    *
+   * @name   .use
    * @emits `error` when plugin `fn` throws an error
    * @emits `use` on successful completion with `fn` and `result` arguments,
    *              where the `result` is returned value of the plugin
