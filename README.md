@@ -55,7 +55,7 @@ on the instance, using [define-property][] lib.
 * `value` **{any}**: descriptor for the property being defined or modified    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.use](index.js#L126)
+### [.use](index.js#L127)
 
 > Define a plugin `fn` function to be called immediately upon init.
 It is recommended `fn` to be synchronous and should not expect
@@ -63,6 +63,7 @@ asynchronous plugins to work correctly - use plugins for this.
 Uses [try-catch-callback][] under the hood to handle errors
 and completion of that synchronous function.
 _**Never throws - emit events!™**_
+> See [try-catch-callback][] and/or [try-catch-core][] for more details.
 
 **Params**
 
@@ -72,6 +73,41 @@ _**Never throws - emit events!™**_
 **Events**
 * `emits`: `error` when plugin `fn` throws an error  
 * `emits`: `use` on successful completion with `fn` and `result` arguments, where the `result` is returned value of the plugin  
+
+### [#delegate](index.js#L154)
+
+> Static method to delegate properties from `provider` to `receiver`
+and make them non-enumerable.
+> See [delegate-properties][] for more details, it is exact mirror.
+
+**Params**
+
+* `receiver` **{Object}**: object receiving properties    
+* `provider` **{Object}**: object providing properties    
+
+### [#define](index.js#L167)
+
+> Static method to define a non-enumerable property on an object.
+> See [define-property][] for more details, it is exact mirror.
+
+**Params**
+
+* `obj` **{Object}**: The object on which to define the property    
+* `prop` **{Object}**: The name of the property to be defined or modified    
+* `returns` **{any}** `descriptor`: The descriptor for the property being defined or modified  
+
+### [#extend](index.js#L182)
+
+> Static method for inheriting the prototype and static
+methods of the `MiniBase` class. This method greatly simplifies
+the process of creating inheritance-based applications.
+> See [static-extend][] for more details.
+
+**Params**
+
+* `Ctor` **{Function}**: constructor to extend    
+* `methods` **{Object}**: optional prototype properties to mix in    
+* `returns` **{Object}** `MiniBase`: constructor for chaining  
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-minibase/minibase/issues/new).  
@@ -84,7 +120,9 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [base]: https://github.com/node-base/base
 [define-property]: https://github.com/jonschlinkert/define-property
 [delegate-properties]: https://github.com/jonschlinkert/delegate-properties
+[static-extend]: https://github.com/jonschlinkert/static-extend
 [try-catch-callback]: https://github.com/tunnckocore/try-catch-callback
+[try-catch-core]: https://github.com/tunnckocore/try-catch-core
 
 [npmjs-url]: https://www.npmjs.com/package/minibase
 [npmjs-img]: https://img.shields.io/npm/v/minibase.svg?label=minibase

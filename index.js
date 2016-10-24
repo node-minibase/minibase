@@ -111,6 +111,7 @@ utils.delegate(MiniBase.prototype, {
    * Uses [try-catch-callback][] under the hood to handle errors
    * and completion of that synchronous function.
    * _**Never throws - emit events!™**_
+   * > See [try-catch-callback][] and/or [try-catch-core][] for more details.
    *
    * @name   .use
    * @emits `error` when plugin `fn` throws an error
@@ -139,8 +140,45 @@ utils.delegate(MiniBase.prototype, {
 })
 
 utils.delegate(MiniBase, {
+  /**
+   * > Static method to delegate properties from `provider` to `receiver`
+   * and make them non-enumerable.
+   * > See [delegate-properties][] for more details, it is exact mirror.
+   *
+   * @name   #delegate
+   * @param  {Object} `receiver` object receiving properties
+   * @param  {Object} `provider` object providing properties
+   * @api public
+   */
+
   delegate: utils.delegate,
+
+  /**
+   * > Static method to define a non-enumerable property on an object.
+   * > See [define-property][] for more details, it is exact mirror.
+   *
+   * @name   #define
+   * @param  {Object} `obj` The object on which to define the property
+   * @param {Object} `prop` The name of the property to be defined or modified
+   * @return {any} `descriptor` The descriptor for the property being defined or modified
+   * @api public
+   */
+
   define: utils.define,
+
+  /**
+   * > Static method for inheriting the prototype and static
+   * methods of the `MiniBase` class. This method greatly simplifies
+   * the process of creating inheritance-based applications.
+   * > See [static-extend][] for more details.
+   *
+   * @name   #extend
+   * @param  {Function} `Ctor` constructor to extend
+   * @param  {Object} `methods` optional prototype properties to mix in
+   * @return {Object} `MiniBase` constructor for chaining
+   * @api public
+   */
+
   extend: utils.staticExtend(MiniBase, (Child) => {
     utils.delegate(Child, {
       delegate: utils.delegate,

@@ -71,7 +71,9 @@
       "base",
       "define-property",
       "delegate-properties",
-      "try-catch-callback"
+      "try-catch-callback",
+      "static-extend",
+      "try-catch-core"
     ]
   }
 }
