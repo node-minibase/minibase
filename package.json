@@ -101,11 +101,18 @@
     "tasks": [
       "readme"
     ],
-    "lint": {
-      "reflinks": true
-    },
     "related": {
-      "list": []
+      "list": [
+        "base",
+        "base-task",
+        "base-app",
+        "base-plugins",
+        "base-plugins-enhanced",
+        "use",
+        "lazy-cache",
+        "verb",
+        "generate"
+      ]
     },
     "reflinks": [
       "base",
@@ -114,6 +121,9 @@
       "try-catch-callback",
       "static-extend",
       "try-catch-core"
-    ]
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
