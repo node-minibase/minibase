@@ -160,7 +160,7 @@ utils.delegate(MiniBase, {
    * @name   #define
    * @param  {Object} `obj` The object on which to define the property
    * @param {Object} `prop` The name of the property to be defined or modified
-   * @return {any} `descriptor` The descriptor for the property being defined or modified
+   * @param {any} `descriptor` The descriptor for the property being defined or modified
    * @api public
    */
 
@@ -175,7 +175,6 @@ utils.delegate(MiniBase, {
    * @name   #extend
    * @param  {Function} `Ctor` constructor to extend
    * @param  {Object} `methods` optional prototype properties to mix in
-   * @return {Object} `MiniBase` constructor for chaining
    * @api public
    */
 

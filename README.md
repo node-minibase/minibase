@@ -100,9 +100,9 @@ and make them non-enumerable.
 
 * `obj` **{Object}**: The object on which to define the property    
 * `prop` **{Object}**: The name of the property to be defined or modified    
-* `returns` **{any}** `descriptor`: The descriptor for the property being defined or modified  
+* `descriptor` **{any}**: The descriptor for the property being defined or modified    
 
-### [#extend](index.js#L182)
+### [#extend](index.js#L181)
 
 > Static method for inheriting the prototype and static
 methods of the `MiniBase` class. This method greatly simplifies
@@ -113,7 +113,6 @@ the process of creating inheritance-based applications.
 
 * `Ctor` **{Function}**: constructor to extend    
 * `methods` **{Object}**: optional prototype properties to mix in    
-* `returns` **{Object}** `MiniBase`: constructor for chaining  
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-minibase/minibase/issues/new).  
