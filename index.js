@@ -1,5 +1,5 @@
 /*!
- * node-minibase/minibase <https://github.com/node-minibase/minibase>
+ * minibase <https://github.com/node-minibase/minibase>
  *
  * Copyright (c) 2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.
