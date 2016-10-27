@@ -87,6 +87,7 @@ utils.delegate(MiniBase.prototype, {
     // hide them
     this.define('_events', this._events)
     this.define('_eventsCount', this._eventsCount)
+    this.define('_anonymousPluginsCount', 1)
 
     // default error handlers
     this.once('error', this.options.silent === true
@@ -239,8 +240,9 @@ utils.delegate(MiniBase.prototype, {
     fn = fn.bind(this, this)
     utils.tryCatch(fn, (err, res) => {
       if (err) {
+        var anon = 'anonymous ' + (this._anonymousPluginsCount + 1)
         err.fn = fn
-        err.fnName = utils.getFnName(fn)
+        err.fnName = utils.getFnName(fn) || anon
         this.emit('error', err)
         return
       }

@@ -17,7 +17,9 @@ let app = new MiniBase({
 // uncomment to handle the errors,
 // even if `silent: true`
 //
-// app.once('error', console.log)
+app.once('error', function (err) {
+  console.log(err.fnName) // => anonymous 1
+})
 
 app.use(function (ctx) {
   console.log(ctx)
