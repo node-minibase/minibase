@@ -76,7 +76,7 @@ app.use(function () {
 
 * `[options]` **{Object}**: optional, pass `silent: true` to not add default error listener    
 
-### [.delegate](index.js#L136)
+### [.delegate](index.js#L137)
 > Copy properties from `provider` to `this` instance of `MiniBase`, using [delegate-properties][] lib.
 
 **Example**
@@ -109,7 +109,7 @@ console.log(minibase.qux('kitty!')) // => 'hello kitty!'
 * `<provider>` **{Object}**: object providing properties    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.define](index.js#L190)
+### [.define](index.js#L191)
 > Used for adding non-enumerable property `key` with `value` on the instance, using [define-property][] lib.
 
 **Example**
@@ -156,7 +156,7 @@ console.log(minimist.cache.qux) // => 123
 * `value` **{any}**: descriptor for the property being defined or modified    
 * `returns` **{Object}**: Returns instance of `MiniBase` for chaining  
 
-### [.use](index.js#L238)
+### [.use](index.js#L239)
 > Define a plugin `fn` function to be called immediately upon init. It is recommended `fn` to be synchronous and should not expect asynchronous plugins to work correctly - use plugins for this. Uses [try-catch-callback][] under the hood to handle errors and completion of that synchronous function. _**Never throws - emit events!™**_
 
 See [try-catch-callback][] and/or [try-catch-core][] for more details.
@@ -191,7 +191,7 @@ app
 * `emits`: `error` when plugin `fn` throws an error  
 * `emits`: `use` on successful completion with `fn` and `result` arguments, where the `result` is returned value of the plugin  
 
-### [#delegate](index.js#L281)
+### [#delegate](index.js#L283)
 > Static method to delegate properties from `provider` to `receiver` and make them non-enumerable.
 
 See [delegate-properties][] for more details, it is exact mirror.
@@ -215,7 +215,7 @@ console.log(obj.qux) // => 123
 * `receiver` **{Object}**: object receiving properties    
 * `provider` **{Object}**: object providing properties    
 
-### [#define](index.js#L308)
+### [#define](index.js#L310)
 > Static method to define a non-enumerable property on an object.
 
 See [define-property][] for more details, it is exact mirror.
@@ -238,7 +238,7 @@ console.log(obj.bar()) // => 'qux'
 * `prop` **{Object}**: The name of the property to be defined or modified    
 * `descriptor` **{any}**: The descriptor for the property being defined or modified    
 
-### [#extend](index.js#L345)
+### [#extend](index.js#L347)
 > Static method for inheriting the prototype and static methods of the `MiniBase` class. This method greatly simplifies the process of creating inheritance-based applications.
 
 See [static-extend][] for more details.
