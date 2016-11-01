@@ -245,6 +245,7 @@ utils.delegate(MiniBase.prototype, {
         this.emit('error', err)
         return
       }
+      this.emit('use', fn, res)
     })
     return this
   }
