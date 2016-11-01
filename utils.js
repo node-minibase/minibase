@@ -14,7 +14,7 @@ require('eventemitter3', 'EventEmitter')
 require('get-fn-name')
 require('isobject', 'isObject')
 require('static-extend')
-require('try-catch-callback', 'tryCatch')
+require('try-catch-callback')
 require = fn // eslint-disable-line no-undef, no-native-reassign, no-global-assign
 
 /**

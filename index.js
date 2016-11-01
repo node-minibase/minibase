@@ -211,15 +211,12 @@ utils.delegate(MiniBase.prototype, {
    *
    * app
    *   .once('error', (err) => console.error(err.stack || err))
-   *   .on('use', function (fn, res) {
-   *     // called on each `.use` call
-   *     console.log(res) // => 555
-   *   })
    *   .use((app) => {
    *     console.log(app.options) // => { silent: true, foo: 'bar' }
    *     return 555
    *   })
    *   .use(function () {
+   *     console.log(this.options) // => { silent: true, foo: 'bar' }
    *     // intentionally
    *     foo bar
    *   })
@@ -237,8 +234,10 @@ utils.delegate(MiniBase.prototype, {
    */
 
   use: function use (fn) {
-    fn = fn.bind(this, this)
-    utils.tryCatch(fn, (err, res) => {
+    utils.tryCatchCallback.call(this, fn, {
+      passCallback: true,
+      args: [this]
+    }, (err, res) => {
       if (err) {
         var anon = 'anonymous ' + (this._anonymousPluginsCount + 1)
         err.fn = fn
@@ -246,8 +245,7 @@ utils.delegate(MiniBase.prototype, {
         this.emit('error', err)
         return
       }
-      this.emit('use', fn, res)
-    }, true)
+    })
     return this
   }
 })

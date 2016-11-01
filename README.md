@@ -156,7 +156,7 @@ console.log(minimist.cache.baz) // => { a: 'b' }
 console.log(minimist.cache.qux) // => 123
 ```
 
-### [.use](index.js#L239)
+### [.use](index.js#L236)
 > Define a plugin `fn` function to be called immediately upon init. It is recommended `fn` to be synchronous and should not expect asynchronous plugins to work correctly - use plugins for this. Uses [try-catch-callback][] under the hood to handle errors and completion of that synchronous function. _**Never throws - emit events!™**_
 
 See [try-catch-callback][] and/or [try-catch-core][] for more details.
@@ -178,21 +178,18 @@ const app = MiniBase({ silent: true, foo: 'bar' })
 
 app
   .once('error', (err) => console.error(err.stack || err))
-  .on('use', function (fn, res) {
-    // called on each `.use` call
-    console.log(res) // => 555
-  })
   .use((app) => {
     console.log(app.options) // => { silent: true, foo: 'bar' }
     return 555
   })
   .use(function () {
+    console.log(this.options) // => { silent: true, foo: 'bar' }
     // intentionally
     foo bar
   })
 ```
 
-### [#delegate](index.js#L283)
+### [#delegate](index.js#L281)
 > Static method to delegate properties from `provider` to `receiver` and make them non-enumerable.
 
 See [delegate-properties][] for more details, it is exact mirror.
@@ -217,7 +214,7 @@ console.log(obj.foo) // => 'bar'
 console.log(obj.qux) // => 123
 ```
 
-### [#define](index.js#L310)
+### [#define](index.js#L308)
 > Static method to define a non-enumerable property on an object.
 
 See [define-property][] for more details, it is exact mirror.
@@ -241,7 +238,7 @@ console.log(obj.foo) // => 123
 console.log(obj.bar()) // => 'qux'
 ```
 
-### [#extend](index.js#L347)
+### [#extend](index.js#L345)
 > Static method for inheriting the prototype and static methods of the `MiniBase` class. This method greatly simplifies the process of creating inheritance-based applications.
 
 See [static-extend][] for more details.
@@ -296,8 +293,8 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [define-property]: https://github.com/jonschlinkert/define-property
 [delegate-properties]: https://github.com/jonschlinkert/delegate-properties
 [static-extend]: https://github.com/jonschlinkert/static-extend
-[try-catch-callback]: https://github.com/tunnckocore/try-catch-callback
-[try-catch-core]: https://github.com/tunnckocore/try-catch-core
+[try-catch-callback]: https://github.com/hybridables/try-catch-callback
+[try-catch-core]: https://github.com/hybridables/try-catch-core
 
 [npmjs-url]: https://www.npmjs.com/package/minibase
 [npmjs-img]: https://img.shields.io/npm/v/minibase.svg?label=minibase
