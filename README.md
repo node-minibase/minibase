@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/node-base/base">
+  <a href="https://github.com/node-minibase">
     <img height="250" width="250" src="https://avatars1.githubusercontent.com/u/23032863?v=3&s=250">
   </a>
 </p>
@@ -189,7 +189,7 @@ app
   })
 ```
 
-### [#delegate](index.js#L281)
+### [#delegate](index.js#L282)
 > Static method to delegate properties from `provider` to `receiver` and make them non-enumerable.
 
 See [delegate-properties][] for more details, it is exact mirror.
@@ -214,7 +214,7 @@ console.log(obj.foo) // => 'bar'
 console.log(obj.qux) // => 123
 ```
 
-### [#define](index.js#L308)
+### [#define](index.js#L309)
 > Static method to define a non-enumerable property on an object.
 
 See [define-property][] for more details, it is exact mirror.
@@ -238,7 +238,7 @@ console.log(obj.foo) // => 123
 console.log(obj.bar()) // => 'qux'
 ```
 
-### [#extend](index.js#L345)
+### [#extend](index.js#L346)
 > Static method for inheriting the prototype and static methods of the `MiniBase` class. This method greatly simplifies the process of creating inheritance-based applications.
 
 See [static-extend][] for more details.
