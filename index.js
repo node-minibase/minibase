@@ -81,8 +81,7 @@ utils.delegate(MiniBase.prototype, {
    */
 
   initMiniBase: function initMiniBase (options) {
-    // ensure `this.options` is always an object
-    this.options = utils.isObject(options) ? options : {}
+    this.options = utils.extend({}, this.options, options)
 
     // hide them
     this.define('_events', this._events)

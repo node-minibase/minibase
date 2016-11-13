@@ -11,6 +11,7 @@ require = utils // eslint-disable-line no-undef, no-native-reassign, no-global-a
 require('define-property', 'define')
 require('delegate-properties', 'delegate')
 require('eventemitter3', 'EventEmitter')
+require('extend-shallow', 'extend')
 require('get-fn-name')
 require('isobject', 'isObject')
 require('static-extend')
