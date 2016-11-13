@@ -7,8 +7,8 @@
 
 'use strict'
 
-const util = require('util')
-const utils = require('./utils')
+var util = require('util')
+var utils = require('./utils')
 
 /**
  * > Creates an instance of `MiniBase` with optional `options`
@@ -236,7 +236,7 @@ utils.delegate(MiniBase.prototype, {
     utils.tryCatchCallback.call(this, fn, {
       passCallback: true,
       args: [this]
-    }, (err, res) => {
+    }, function (err, res) {
       if (err) {
         var anon = 'anonymous ' + (this._anonymousPluginsCount + 1)
         err.fn = fn
@@ -245,7 +245,7 @@ utils.delegate(MiniBase.prototype, {
         return
       }
       this.emit('use', fn, res)
-    })
+    }.bind(this))
     return this
   }
 })
@@ -342,7 +342,7 @@ utils.delegate(MiniBase, {
    * @api public
    */
 
-  extend: utils.staticExtend(MiniBase, (Child) => {
+  extend: utils.staticExtend(MiniBase, function (Child) {
     utils.delegate(Child, {
       delegate: utils.delegate,
       define: utils.define

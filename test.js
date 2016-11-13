@@ -9,8 +9,8 @@
 
 'use strict'
 
-let MiniBase = require('./index').MiniBase
-let app = new MiniBase({
+var MiniBase = require('./index').MiniBase
+var app = new MiniBase({
   silent: true
 })
 
