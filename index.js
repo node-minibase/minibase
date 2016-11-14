@@ -88,15 +88,6 @@ utils.delegate(MiniBase.prototype, {
     this.define('_eventsCount', this._eventsCount)
     this.define('_anonymousPluginsCount', 1)
 
-    // default error handlers
-    this.once('error', this.options.silent === true
-      ? function onerrorSilent () {}
-      : function onerror (err) {
-        console.log('minibase`s default error listener:')
-        console.error(err.stack || err)
-        console.log('Pass options.silent: true to disable')
-      })
-
     return this
   },
 
@@ -235,6 +226,14 @@ utils.delegate(MiniBase.prototype, {
    */
 
   use: function use (fn) {
+    /* istanbul ignore next */
+    if (!this.listeners('error').length && this.options.silent !== true) {
+      this.once('error', function defaultErrorHandler (err) {
+        console.log('MiniBase default error handler:', err.toString())
+        console.log(err.stack)
+      })
+    }
+
     utils.tryCatchCallback.call(this, fn, {
       passCallback: false,
       args: [this]

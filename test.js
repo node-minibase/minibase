@@ -9,22 +9,15 @@
 
 'use strict'
 
+var assert = require('assert')
 var MiniBase = require('./index').MiniBase
-var app = new MiniBase({
-  silent: true
+var suite = require('minibase-tests')
+
+suite(MiniBase).runTests().then(function (res) {
+  assert.strictEqual(res.length, 18)
+  console.log('all `minibase-tests` passed')
+}, function (err) {
+  console.error('fail:')
+  console.error(err.stack || err)
 })
 
-// uncomment to handle the errors,
-// even if `silent: true`
-//
-app.once('error', function (err) {
-  console.log(err.fnName) // => anonymous 1
-})
-
-app.use(function (ctx) {
-  console.log(ctx)
-  console.log(this)
-})
-app.use(function (ctx) {
-  console.log(tdhdasdasdis) // eslint-disable-line no-undef
-})

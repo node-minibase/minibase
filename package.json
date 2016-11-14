@@ -13,7 +13,7 @@
     "test": "npm run coverage",
     "posttest": "npm run lint:coverage",
     "coverage": "nyc node test.js",
-    "lint:coverage": "nyc check-coverage --lines 0 --branches 0 --statements 0 --functions 0",
+    "lint:coverage": "nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "prerelease": "npm test",
     "release": "standard-version --sign --no-verify",
@@ -34,7 +34,8 @@
   "devDependencies": {
     "commitizen": "~2.7.0",
     "coveralls": "^2.11.15",
-    "cz-conventional-changelog": "^1.2.0",
+    "cz-conventional-changelog": "1.1.5",
+    "minibase-tests": "^1.0.3",
     "mukla": "^0.4.8",
     "nyc": "^8.1.0",
     "pre-commit": "^1.1.3",
