@@ -92,43 +92,50 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "verb": {
     "run": true,
     "toc": {
       "render": true,
       "method": "preWrite",
-      "maxdepth": 4
+      "maxdepth": 3,
+      "footer": ""
     },
     "layout": "empty",
     "tasks": [
       "readme"
     ],
     "related": {
+      "highlight": "base",
       "list": [
         "base",
-        "base-task",
-        "base-app",
-        "base-plugins",
-        "base-plugins-enhanced",
         "use",
         "lazy-cache",
         "verb",
-        "generate"
+        "generate",
+        "try-catch-callback",
+        "minibase-is-registered",
+        "minibase-create-plugin",
+        "minibase-visit",
+        "minibase-better-define"
       ]
     },
     "reflinks": [
       "base",
       "define-property",
       "delegate-properties",
-      "try-catch-callback",
       "static-extend",
-      "try-catch-core"
+      "try-catch-callback",
+      "try-catch-core",
+      "verb",
+      "verb-generate-readme",
+      "collection-visit",
+      "minibase"
     ],
     "lint": {
       "reflinks": true
     }
-  },
-  "engines": {
-    "node": ">=0.10.0"
   }
 }
