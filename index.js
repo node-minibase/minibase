@@ -234,7 +234,7 @@ utils.delegate(MiniBase.prototype, {
 
   use: function use (fn) {
     utils.tryCatchCallback.call(this, fn, {
-      passCallback: true,
+      passCallback: false,
       args: [this]
     }, function (err, res) {
       if (err) {
