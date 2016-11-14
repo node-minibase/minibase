@@ -92,7 +92,9 @@ utils.delegate(MiniBase.prototype, {
     this.once('error', this.options.silent === true
       ? function onerrorSilent () {}
       : function onerror (err) {
+        console.log('minibase`s default error listener:')
         console.error(err.stack || err)
+        console.log('Pass options.silent: true to disable')
       })
 
     return this
