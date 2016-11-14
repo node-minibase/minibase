@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.6"></a>
+## [0.4.6](https://github.com/node-minibase/minibase/compare/v0.4.5...v0.4.6) (2016-11-14)
+
+
+### Bug Fixes
+
+* **tests:** update tests, bump minibase-tests ([571e2c5](https://github.com/node-minibase/minibase/commit/571e2c5))
+* **tests:** update tests, use "minibase-tests" ([381c1d1](https://github.com/node-minibase/minibase/commit/381c1d1))
+
+
+
 <a name="0.4.5"></a>
 ## [0.4.5](https://github.com/node-minibase/minibase/compare/v0.4.4...v0.4.5) (2016-11-14)
 

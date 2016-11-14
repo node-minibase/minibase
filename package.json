@@ -1,6 +1,6 @@
 {
   "name": "minibase",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "MiniBase is minimalist approach to Base - @node-base, the awesome framework. Foundation for building complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.",
   "repository": "node-minibase/minibase",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
