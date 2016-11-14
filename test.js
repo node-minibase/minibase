@@ -9,15 +9,17 @@
 
 'use strict'
 
-var assert = require('assert')
 var MiniBase = require('./index').MiniBase
 var suite = require('minibase-tests')
 
-suite(MiniBase).runTests().then(function (res) {
-  assert.strictEqual(res.length, 18)
-  console.log('all `minibase-tests` passed')
-}, function (err) {
-  console.error('fail:')
-  console.error(err.stack || err)
-})
+suite(MiniBase).runTests(true).then(function (res) {
+  console.log('# tests', res.tests)
+  console.log('# pass', res.tests - res.length)
 
+  if (!res.length) {
+    console.log('')
+    console.log('# ok')
+    return
+  }
+  console.log('# fail', res.length, 'add `true` to `.runTests` to see them')
+})
