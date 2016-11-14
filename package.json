@@ -124,15 +124,17 @@
     },
     "reflinks": [
       "base",
+      "collection-visit",
       "define-property",
       "delegate-properties",
+      "minibase",
       "static-extend",
       "try-catch-callback",
       "try-catch-core",
       "verb",
       "verb-generate-readme",
-      "collection-visit",
-      "minibase"
+      "commitizen",
+      "standard-version"
     ],
     "lint": {
       "reflinks": true
