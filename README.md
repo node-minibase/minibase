@@ -6,7 +6,7 @@
 
 # minibase [![NPM version](https://img.shields.io/npm/v/minibase.svg?style=flat)](https://www.npmjs.com/package/minibase) [![NPM downloads](https://img.shields.io/npm/dm/minibase.svg?style=flat)](https://npmjs.org/package/minibase) [![npm total downloads][downloads-img]][downloads-url]
 
-> MiniBase is minimalist approach to Base - @node-base, the awesome framework. Foundation for building complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.
+> Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![Windows Build Status](https://img.shields.io/appveyor/ci/node-minibase/minibase.svg?style=flat&label=AppVeyor)](https://ci.appveyor.com/project/node-minibase/minibase) [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
@@ -54,39 +54,38 @@ const minibase = require('minibase')
 
 ## API
 
-### [MiniBase](index.js#L47)
+### [MiniBase](index.js#L46)
 > Creates an instance of `MiniBase` with optional `options` object - if given, otherwise the `minibase.options` defaults to empty object. _**Never throws - emit events!™**_
 
 **Params**
 
-* `[options]` **{Object}**: optional, pass `silent: true` to not add default error listener    
+* `[options]` **{Object}**: optional, written to `this.options`    
 
 **Example**
 
 ```js
 const MiniBase = require('minibase').MiniBase
+
+// main export is instance
 const app = require('minibase')
 
-// when `silent: true` it will not add
-// the default event listener to `error` event
-const minibase = MiniBase({ silent: true })
-
-// nothing is printed, until you add
-// listener `.on('error', fn)`
-minibase.use(() => {
-  throw new Error('foo bar')
+app.once('error', (err) => {
+  console.log('error:', err)
 })
 
-// if you work with defaults
-// you will get this error printed
-// because the default error handler
-app.use(function () {
-  console.log(this.options.silent) // => undefined
-  throw new Error('default error handler works')
+app.use((self) => {
+  // this === self === app
+  console.log(self.use) // => 'function'
+  console.log(self.define) // => 'function'
+  self.define('foo', 'bar')
+})
+
+app.use(() => {
+  throw new Error('qux')
 })
 ```
 
-### [.delegate](index.js#L129)
+### [.delegate](index.js#L128)
 > Copy properties from `provider` to `this` instance of `MiniBase`, using [delegate-properties][] lib.
 
 **Params**
@@ -119,7 +118,7 @@ console.log(minibase.foo) // => 'bar'
 console.log(minibase.qux('kitty!')) // => 'hello kitty!'
 ```
 
-### [.define](index.js#L183)
+### [.define](index.js#L182)
 > Used for adding non-enumerable property `key` with `value` on the instance, using [define-property][] lib.
 
 **Params**
@@ -166,7 +165,7 @@ console.log(minimist.cache.baz) // => { a: 'b' }
 console.log(minimist.cache.qux) // => 123
 ```
 
-### [.use](index.js#L218)
+### [.use](index.js#L217)
 > Define a synchronous plugin `fn` function to be called immediately upon init. _**Never throws - emit events!™**_
 
 **Params**
@@ -196,7 +195,7 @@ app
   })
 ```
 
-### [#delegate](index.js#L263)
+### [#delegate](index.js#L262)
 > Static method to delegate properties from `provider` to `receiver` and make them non-enumerable.
 
 See [delegate-properties][] for more details, it is exact mirror.
@@ -221,7 +220,7 @@ console.log(obj.foo) // => 'bar'
 console.log(obj.qux) // => 123
 ```
 
-### [#define](index.js#L290)
+### [#define](index.js#L289)
 > Static method to define a non-enumerable property on an object.
 
 See [define-property][] for more details, it is exact mirror.
@@ -245,7 +244,7 @@ console.log(obj.foo) // => 123
 console.log(obj.bar()) // => 'qux'
 ```
 
-### [#extend](index.js#L327)
+### [#extend](index.js#L326)
 > Static method for inheriting the prototype and static methods of the `MiniBase` class. This method greatly simplifies the process of creating inheritance-based applications.
 
 See [static-extend][] for more details.

@@ -19,28 +19,27 @@ var utils = require('./utils')
  *
  * ```js
  * const MiniBase = require('minibase').MiniBase
+ *
+ * // main export is instance
  * const app = require('minibase')
  *
- * // when `silent: true` it will not add
- * // the default event listener to `error` event
- * const minibase = MiniBase({ silent: true })
- *
- * // nothing is printed, until you add
- * // listener `.on('error', fn)`
- * minibase.use(() => {
- *   throw new Error('foo bar')
+ * app.once('error', (err) => {
+ *   console.log('error:', err)
  * })
  *
- * // if you work with defaults
- * // you will get this error printed
- * // because the default error handler
- * app.use(function () {
- *   console.log(this.options.silent) // => undefined
- *   throw new Error('default error handler works')
+ * app.use((self) => {
+ *   // this === self === app
+ *   console.log(self.use) // => 'function'
+ *   console.log(self.define) // => 'function'
+ *   self.define('foo', 'bar')
+ * })
+ *
+ * app.use(() => {
+ *   throw new Error('qux')
  * })
  * ```
  *
- * @param {Object} `[options]` optional, pass `silent: true` to not add default error listener
+ * @param {Object} `[options]` optional, written to `this.options`
  * @api public
  */
 
