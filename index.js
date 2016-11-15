@@ -76,7 +76,7 @@ utils.delegate(MiniBase.prototype, {
    *
    * @name   .initMiniBase
    * @param  {Object} `options`
-   * @return {Object} Returns instance of `MiniBase` for chaining
+   * @return {Object} Returns instance for chaining
    * @api private
    */
 
@@ -122,7 +122,7 @@ utils.delegate(MiniBase.prototype, {
    *
    * @name   .delegate
    * @param  {Object} `<provider>` object providing properties
-   * @return {Object} Returns instance of `MiniBase` for chaining
+   * @return {Object} Returns instance for chaining
    * @api public
    */
 
@@ -176,7 +176,7 @@ utils.delegate(MiniBase.prototype, {
    * @name   .define
    * @param  {String} `key` name of the property to be defined or modified
    * @param  {any} `value` descriptor for the property being defined or modified
-   * @return {Object} Returns instance of `MiniBase` for chaining
+   * @return {Object} Returns instance for chaining
    * @api public
    */
 
@@ -186,14 +186,8 @@ utils.delegate(MiniBase.prototype, {
   },
 
   /**
-   * > Define a plugin `fn` function to be called immediately upon init.
-   * It is recommended `fn` to be synchronous and should not expect
-   * asynchronous plugins to work correctly - use plugins for this.
-   * Uses [try-catch-callback][] under the hood to handle errors
-   * and completion of that synchronous function.
-   * _**Never throws - emit events!™**_
-   *
-   * See [try-catch-callback][] and/or [try-catch-core][] for more details.
+   * > Define a synchronous plugin `fn` function to be
+   * called immediately upon init. _**Never throws - emit events!™**_
    *
    * **Example**
    *
@@ -216,12 +210,8 @@ utils.delegate(MiniBase.prototype, {
    *
    * @name   .use
    * @emits `error` when plugin `fn` throws an error
-   * @emits `use` on successful completion with `fn` and `result` arguments,
-   *              where the `result` is returned value of the plugin
-   * @param  {Function} `fn` plugin to be called with `ctx, cb` arguments,
-   *              where both `ctx` and `this` of `fn` are instance of `MiniBase`
-   *              and `cb` is callback - use with caution and in rare cases
-   * @return {Object} Returns instance of `MiniBase` for chaining
+   * @param  {Function} `fn` plugin passed with `ctx` which is the instance
+   * @return {Object} Returns instance for chaining
    * @api public
    */
 
