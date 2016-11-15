@@ -8,7 +8,7 @@
 
 > MiniBase is minimalist approach to Base - @node-base, the awesome framework. Foundation for building complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.
 
-[![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url]  [![Linux Build Status](https://img.shields.io/travis/node-minibase/minibase.svg?style=flat&label=Travis)](https://travis-ci.org/node-minibase/minibase) [![Windows Build Status](https://img.shields.io/appveyor/ci/node-minibase/minibase.svg?style=flat&label=AppVeyor)](https://ci.appveyor.com/project/node-minibase/minibase) [![Coverage Status](https://img.shields.io/coveralls/node-minibase/minibase.svg?style=flat)](https://coveralls.io/r/node-minibase/minibase) [![dependency status][david-img]][david-url]
+[![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![Windows Build Status](https://img.shields.io/appveyor/ci/node-minibase/minibase.svg?style=flat&label=AppVeyor)](https://ci.appveyor.com/project/node-minibase/minibase) [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
 You might also be interested in [base](https://github.com/node-base/base).
 
@@ -23,7 +23,7 @@ You might also be interested in [base](https://github.com/node-base/base).
   * [#delegate](##delegate)
   * [#define](##define)
   * [#extend](##extend)
-- [Related projects](#related-projects)
+- [Related](#related)
 - [Contributing](#contributing)
 - [Building docs](#building-docs)
 - [Running tests](#running-tests)
@@ -280,20 +280,17 @@ console.log(app.define) // => function
 console.log(app.delegate) // => function
 ```
 
-## Related projects
-
-You might also be interested in these projects: 
-
-- [base](https://www.npmjs.com/package/base): base is the foundation for creating modular, unit testable and highly pluggable node.js applications, starting… [more](https://github.com/node-base/base) | [homepage](https://github.com/node-base/base "base is the foundation for creating modular, unit testable and highly pluggable node.js applications, starting with a handful of common methods, like `set`, `get`, `del` and `use`.")
-- [generate](https://www.npmjs.com/package/generate): Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the… [more](https://github.com/generate/generate) | [homepage](https://github.com/generate/generate "Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the robustness and configurability of Yeoman, the expressiveness and simplicity of Slush, and more powerful flow control and composability than either.")
+## Related
+- [base](https://www.npmjs.com/package/base): base is the foundation for creating modular, unit testable and highly pluggable node.js applications, starting with… [more](https://github.com/node-base/base) | [homepage](https://github.com/node-base/base "base is the foundation for creating modular, unit testable and highly pluggable node.js applications, starting with a handful of common methods, like `set`, `get`, `del` and `use`.")
+- [generate](https://www.npmjs.com/package/generate): Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the robustness… [more](https://github.com/generate/generate) | [homepage](https://github.com/generate/generate "Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the robustness and configurability of Yeoman, the expressiveness and simplicity of Slush, and more powerful flow control and composability than either.")
 - [lazy-cache](https://www.npmjs.com/package/lazy-cache): Cache requires to be lazy-loaded when needed. | [homepage](https://github.com/jonschlinkert/lazy-cache "Cache requires to be lazy-loaded when needed.")
 - [minibase-better-define](https://www.npmjs.com/package/minibase-better-define): Plugin for [base][] and [minibase][] that overrides the core `.define` method to be more better. | [homepage](https://github.com/node-minibase/minibase-better-define#readme "Plugin for [base][] and [minibase][] that overrides the core `.define` method to be more better.")
 - [minibase-create-plugin](https://www.npmjs.com/package/minibase-create-plugin): Utility for [minibase][] and [base][] that helps you create plugins | [homepage](https://github.com/node-minibase/minibase-create-plugin#readme "Utility for [minibase][] and [base][] that helps you create plugins")
-- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance.")
-- [minibase-visit](https://www.npmjs.com/package/minibase-visit): Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a… [more](https://github.com/node-minibase/minibase-visit#readme) | [homepage](https://github.com/node-minibase/minibase-visit#readme "Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a method over the items in an object, or map visit over the objects in an array. Using using [collection-visit][] package.")
-- [try-catch-callback](https://www.npmjs.com/package/try-catch-callback): try/catch block with a callback, used in [try-catch-core][]. Use it when you don't care about… [more](https://github.com/hybridables/try-catch-callback#readme) | [homepage](https://github.com/hybridables/try-catch-callback#readme "try/catch block with a callback, used in [try-catch-core][]. Use it when you don't care about asyncness so much and don't want guarantees. If you care use [try-catch-core][].")
+- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance.")
+- [minibase-visit](https://www.npmjs.com/package/minibase-visit): Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a method… [more](https://github.com/node-minibase/minibase-visit#readme) | [homepage](https://github.com/node-minibase/minibase-visit#readme "Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a method over the items in an object, or map visit over the objects in an array. Using using [collection-visit][] package.")
+- [try-catch-callback](https://www.npmjs.com/package/try-catch-callback): try/catch block with a callback, used in [try-catch-core][]. Use it when you don't care about asyncness… [more](https://github.com/hybridables/try-catch-callback#readme) | [homepage](https://github.com/hybridables/try-catch-callback#readme "try/catch block with a callback, used in [try-catch-core][]. Use it when you don't care about asyncness so much and don't want guarantees. If you care use [try-catch-core][].")
 - [use](https://www.npmjs.com/package/use): Easily add plugin support to your node.js application. | [homepage](https://github.com/jonschlinkert/use "Easily add plugin support to your node.js application.")
-- [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")  
+- [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-minibase/minibase/issues/new).  
@@ -301,15 +298,15 @@ Please read the [contributing guidelines](CONTRIBUTING.md) for advice on opening
 
 **In short:** If you want to contribute to that project, please follow these things
 
-1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md](CHANGELOG.md) and [.verb.md](.verb.md) files. (See ["Building docs"](#building-docs) section)
-2. Ensure anything is okey by installing the dependencies and run the tests. (See ["Running tests"](#running-tests) section)
+1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md](CHANGELOG.md) and [.verb.md](.verb.md) files. See ["Building docs"](#building-docs) section.
+2. Ensure anything is okey by installing the dependencies and run the tests. See ["Running tests"](#running-tests) section.
 3. Always use `npm run commit` to commit changes instead of `git commit`, because it is interactive and user-friendly. It uses [commitizen][] behind the scenes, which follows Conventional Changelog idealogy.
 4. Do NOT bump the version in package.json. For that we use `npm run release`, which is [standard-version][] and follows Conventional Changelog idealogy.
 
 Thanks a lot! :)
 
 ## Building docs
-Documentation and that readme is generated using [verb-generate-readme][], which is a [verb][] generator, so you need to install both of them and then run `verb` command.
+Documentation and that readme is generated using [verb-generate-readme][], which is a [verb][] generator, so you need to install both of them and then run `verb` command like that
 
 ```
 $ npm install verbose/verb#dev verb-generate-readme --global && verb
@@ -335,7 +332,7 @@ Copyright © 2016, [Charlike Mike Reagent](http://www.tunnckocore.tk). Released 
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.2.0, on November 15, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.2.0, on November 16, 2016._
 
 [base]: https://github.com/node-base/base
 [collection-visit]: https://github.com/jonschlinkert/collection-visit
@@ -355,6 +352,12 @@ _This file was generated by [verb-generate-readme](https://github.com/verbose/ve
 
 [codeclimate-url]: https://codeclimate.com/github/node-minibase/minibase
 [codeclimate-img]: https://img.shields.io/codeclimate/github/node-minibase/minibase.svg
+
+[travis-url]: https://travis-ci.org/node-minibase/minibase
+[travis-img]: https://img.shields.io/travis/node-minibase/minibase/master.svg
+
+[coveralls-url]: https://coveralls.io/r/node-minibase/minibase
+[coveralls-img]: https://img.shields.io/coveralls/node-minibase/minibase.svg
 
 [david-url]: https://david-dm.org/node-minibase/minibase
 [david-img]: https://img.shields.io/david/node-minibase/minibase.svg
