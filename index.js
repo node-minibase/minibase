@@ -226,14 +226,6 @@ utils.delegate(MiniBase.prototype, {
    */
 
   use: function use (fn) {
-    /* istanbul ignore next */
-    if (!this.listeners('error').length && this.options.silent !== true) {
-      this.once('error', function defaultErrorHandler (err) {
-        console.log('MiniBase default error handler:', err.toString())
-        console.log(err.stack)
-      })
-    }
-
     utils.tryCatchCallback.call(this, fn, {
       passCallback: false,
       args: [this]
@@ -245,7 +237,6 @@ utils.delegate(MiniBase.prototype, {
         this.emit('error', err)
         return
       }
-      this.emit('use', fn, res)
     }.bind(this))
     return this
   }
