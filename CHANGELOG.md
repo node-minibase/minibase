@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.8"></a>
+## [0.4.8](https://github.com/node-minibase/minibase/compare/v0.4.7...v0.4.8) (2016-11-17)
+
+
+### Bug Fixes
+
+* **appveyor:** update appveyor, no failures are allowed ([c100048](https://github.com/node-minibase/minibase/commit/c100048))
+* **package:** bump minibase-tests ([4a80c3d](https://github.com/node-minibase/minibase/commit/4a80c3d))
+
+
+
 <a name="0.4.7"></a>
 ## [0.4.7](https://github.com/node-minibase/minibase/compare/v0.4.6...v0.4.7) (2016-11-15)
 
