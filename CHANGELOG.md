@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/node-minibase/minibase/compare/v0.4.8...v1.0.0) (2016-11-17)
+
+
+### Bug Fixes
+
+* **license:** fix license year in banner comments ([5b9dabb](https://github.com/node-minibase/minibase/commit/5b9dabb))
+* **package:** bump minibase-tests to laltest ([b2b3f0e](https://github.com/node-minibase/minibase/commit/b2b3f0e))
+
+
+### BREAKING CHANGES
+
+* license: First stable release. No real breaking changes. It's just time for v1.
+
+
+
 <a name="0.4.8"></a>
 ## [0.4.8](https://github.com/node-minibase/minibase/compare/v0.4.7...v0.4.8) (2016-11-17)
 
