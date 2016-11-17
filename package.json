@@ -35,7 +35,7 @@
     "commitizen": "~2.7.0",
     "coveralls": "^2.11.15",
     "cz-conventional-changelog": "1.1.5",
-    "minibase-tests": "^1.1.1",
+    "minibase-tests": "^1.1.2",
     "mukla": "^0.4.8",
     "nyc": "^9.0.1",
     "pre-commit": "^1.1.3",

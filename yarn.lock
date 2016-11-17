@@ -2371,9 +2371,9 @@ mime-types@^2.1.11, mime-types@~2.1.7:
   dependencies:
     mime-db "~1.24.0"
 
-minibase-tests@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/minibase-tests/-/minibase-tests-1.1.1.tgz#c7d909a1b2d6ddf1a79b131c28882ec22dd63c5b"
+minibase-tests@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/minibase-tests/-/minibase-tests-1.1.2.tgz#ea51ba99df5e447b78f8604734628e70e80d0aba"
   dependencies:
     assert-kindof "^2.0.0"
     bluebird "^3.4.6"
