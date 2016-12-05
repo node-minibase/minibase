@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/node-minibase/minibase/compare/v1.0.0...v1.0.1) (2016-12-05)
+
+
+### Bug Fixes
+
+* **deps:** update deps ([2e2d41c](https://github.com/node-minibase/minibase/commit/2e2d41c))
+* **package:** update isobject to version 3.0.0 (#10) ([0910ffe](https://github.com/node-minibase/minibase/commit/0910ffe))
+* **update:** fix link ([f409b59](https://github.com/node-minibase/minibase/commit/f409b59))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/node-minibase/minibase/compare/v0.4.8...v1.0.0) (2016-11-17)
 
